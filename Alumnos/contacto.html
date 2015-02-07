@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang='es'>
+    <head>
+        <meta charset='utf-8'>
+        <link rel='stylesheet' href='stylesheet.css'>
+        <title>Registro en Linea de los Alumnos</title>
+    </head>
+    <body>
+        <div id='contenido'>
+            <header>
+                <hgroup>
+                    <h1>Registro de alumnos del ITVH en línea</h1>
+                </hgroup>
+                <marquee>Bienvenido Usuario</marquee>
+                <nav>
+                    <ul>
+                        <li><a href='index.html'>Inicio</a></li>
+                        <li><a href="tutoriales.html">Instalar XAMPP</a></li>
+                        <li><a href='http://itvillahermosa.edu.mx'>Página ITVH</a></li>
+                        <li><a href='http://cc.itvillahermosa.edu.mx/sys/sie.php'>SIE</a></li>
+                        <li><a href='contacto.html'>Contacto</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <section>
+                <div id='txtPrincipal2'>
+                    <hgroup>
+                        <h1>Contáctanos</h1>
+                    </hgroup>
+                    <article id="izq">
+                        <form>
+                            <label for="nombre">Nombre: </label>
+                            <input type="text" id="nombre" placeholder="Escribe tu nombre" required>
+                            <label for="correo">E-mail: </label>
+                            <input type="email" id="correo" placeholder="Escribe tu e-mail" required>
+                            <label for="edad">Edad: </label>
+                            <input type="number" id="edad" min="0" max="100" required>
+                            <label for="mensaje">Mensaje</label>
+                            <textarea id="mensaje" name="mensaje" placeholder="Escribe tu mensaje" required></textarea>
+                            <label for="calificacion">Califícanos: </label>
+                            <input type="range" id="calificacion"  min="0" max="10" value="0">
+                            <label for="fecha">Fecha: </label>
+                            <input type="date" id="fecha" required>
+                            <input type="submit" value="Enviar datos" id="btnSubmit">
+                        </form>
+                    </article>
+                    <aside id="redesS">
+                        <img src='Imagenes/FB.png' width='240'>
+                        <p>Agregame en Facebook como <a href=https://facebook.com/ZomVictorRomero>Victor Romero</a></p>
+                        <img src='Imagenes/Twitter.png' width='240'>
+                        <p>Sígueme en twiter como <a href=http://twitter.com/ayvictor_>@ayvictor_</a></p>
+                    </aside>
+                </div>
+            </section>
+        </div>
+        <footer>Hecho por Víctor Jesús Romero Pérez | 2014 |</footer>
+    </body>
+</html>

@@ -1,0 +1,7 @@
+13301056|Víctor Jesús|Romero|Pérez|Ing. en Sistemas Computacionales|19 años|Calixto Mérino s/n
+13300986|Danely|García|Felix|Ing. en Sistemas Computacionales|19 años|Fracc. Palmitas
+13301058|Luis Alonso|Ruíz|López|Ing. en Sistemas Computacionales|19 años|Lagunas
+122P4029|Jesús Alejandro|Hernández|Gúzman|Lic. en Medico Cirujano|20 años|Juan Sosa Mazariego #132
+132E45305|Brenda Daniela|Hernández|Morales|Lic. en Medico Cirujano|19 años|Juárez #41
+122P4250|Guillero Eduardo|Castellanos|Narvaez|Lic. en Medico Cirujano|20 años|Sebastan López #42
+122P3153|Cinthya Estefania|Arias|Enciso|Lic. en Enfermería|21 años|Manga 2 Ejido Ismate #406
