@@ -3,6 +3,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import com.mysql.jdbc.Connection;
+
 /*
  * Componente que permite conectarse a una base de datos local o remota...
  * 
@@ -10,20 +12,19 @@ import java.sql.Statement;
  * 
  * Autor: soyvco
  */
-import com.mysql.jdbc.Connection;
-
-public class compBaseDatos
+public class compBaseDatos extends Thread
 {
    // Variables necesarias para conectarse a cualqueier base de datos
-   private String     usuario;
-   private String     contraseña;
-   private String     baseDato;
-   private String     url ="jdbc:mysql://localhost/"+baseDato;
+   private String        usuario    ="";
+   private String        contraseña ="";
+   private static String baseDato   ="";
+   static String         url        ="jdbc:mysql://localhost/"+baseDato;
    // La variable conn nos devolverla la conexion a la base de datos
-   private Connection conn;
+   private Connection    conn;
    
    /* Contructores */
    // Para base de datos local
+   @SuppressWarnings("static-access")
    public compBaseDatos(String pUsuario,String pContraseña,String pBaseDato)
    {
       this.usuario=pUsuario;
@@ -33,6 +34,7 @@ public class compBaseDatos
    }
    
    // Para base de datos remota
+   @SuppressWarnings("static-access")
    public compBaseDatos(String pUsuario,String pContraseña,String pBaseDato,String pUrl)
    {
       this.usuario=pUsuario;
@@ -49,23 +51,23 @@ public class compBaseDatos
       {
          try
          {
-            Class.forName("com.mysql.jbdc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
          }
          catch(ClassNotFoundException e)
          {
             e.printStackTrace();
          }
          conn=(Connection)DriverManager.getConnection(url,usuario,contraseña);
-         System.out.println("Se conecto correctamente a:\n"+url);
+         System.out.println("Conexión satisfactoria con "+url);
       }
       catch(SQLException e)
       {
-         // e.printStackTrace();
-         System.out.println("Ocurrió un erro al conectar en:\n"+url);
+         System.out.println("No se conectó correctamente a "+url+"...");
       }
       return conn;
    }
-   //Método de consulta de información en la base de datos
+   
+   // Método de consulta de información en la base de datos
    public ResultSet getQuery(String _query)
    {
       Statement state=null;
@@ -81,7 +83,8 @@ public class compBaseDatos
       }
       return rs;
    }
-   //Método para ingresar, modificar o borrar información en una base de datos
+   
+   // Método para ingresar, modificar o borrar información en una base de datos
    public void setQuery(String _query)
    {
       Statement state=null;
@@ -94,5 +97,10 @@ public class compBaseDatos
       {
          e.printStackTrace();
       }
+   }
+   
+   public void run()
+   {
+      this.conectarBD();
    }
 }
