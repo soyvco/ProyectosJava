@@ -44,7 +44,7 @@ public class GUIEvento extends compVentana implements KeyListener
       // textfield para los mensajes
       txtMensaje=new JTextField();
       txtMensaje.addKeyListener(this);
-      pCentro.add(txtMensaje,"cell 1 3 7 1,growx");
+      pCentro.add(txtMensaje,"cell 1 3 7 1,grow");
       txtMensaje.setColumns(10);
       // Botón enviar
       btnEnviar=new JButton("Enviar");
