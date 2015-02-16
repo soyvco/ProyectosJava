@@ -25,7 +25,7 @@ public class GUIEvento extends compVentana implements KeyListener
    
    public GUIEvento()
    {
-      super("vcochat",true,480,180,400,500);
+      super("Chat",true,480,180,400,500);
    }
    
    protected void crearContenido()
