@@ -1,3 +1,5 @@
+package EjemploEvento;
+
 
 public class MEvento
 {
