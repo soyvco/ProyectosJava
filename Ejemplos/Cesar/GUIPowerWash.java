@@ -8,9 +8,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import componentes.CompBoton;
-import componentes.compVentana;
+import componentes.CompVentana;
 
-public class GUIPowerWash extends compVentana implements ActionListener
+public class GUIPowerWash extends CompVentana implements ActionListener
 {
    private CompBoton bCliente;
    private CompBoton bPublicoGeneral;
@@ -22,7 +22,7 @@ public class GUIPowerWash extends compVentana implements ActionListener
    
    public GUIPowerWash()
    {
-      super("NIGGANIGGANIGGA",true,440,180,600,400);
+      super("Lavandería: POWER WASH",true,440,180,600,400);
       this.setResizable(false);
    }
    
@@ -41,18 +41,33 @@ public class GUIPowerWash extends compVentana implements ActionListener
       lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
       pArriba.add(BorderLayout.CENTER,lblTitulo);
       /* Botones */
-      bCliente = new CompBoton(pCentro,"Clientes",this,40,25,200,60,false);
+      bCliente=new CompBoton(pCentro,"Clientes",this,40,25,200,60);
       bCliente.setBackground(new Color(51,153,255));
-      bPublicoGeneral = new CompBoton(pCentro,"Publico general",this,40,105,200,60,false);
+      bPublicoGeneral=new CompBoton(pCentro,"Publico general",this,40,105,200,60);
       bPublicoGeneral.setBackground(new Color(51,153,255));
-      bEmpresa = new CompBoton(pCentro,"Empresa",this,40,185,200,60,false);
+      bEmpresa=new CompBoton(pCentro,"Empresa",this,40,185,200,60);
       bEmpresa.setBackground(new Color(51,153,255));
-      bNuevoUsuario = new CompBoton(pCentro,"Nuevo usuario",this,40,265,200,60,false);
+      bNuevoUsuario=new CompBoton(pCentro,"Nuevo usuario",this,40,265,200,60);
       bNuevoUsuario.setBackground(new Color(51,153,255));
-      
    }
    
    public void actionPerformed(ActionEvent pE)
    {
+      if(pE.getSource().equals(bCliente))
+      {
+         new GUICliente();
+      }
+      else if(pE.getSource().equals(bPublicoGeneral))
+      {
+         new GUIPublicoGeneral();
+      }
+      else if(pE.getSource().equals(bEmpresa))
+      {
+         new GUIEmpresa();
+      }
+      else if(pE.getSource().equals(bNuevoUsuario))
+      {
+         new GUINuevoCliente();
+      }
    }
 }

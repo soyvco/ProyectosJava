@@ -12,12 +12,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import componentes.compBaseDatos;
-import componentes.compVentana;
+import componentes.CompBaseDatos;
+import componentes.CompVentana;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.SwingConstants;
 
-public class GUITestBaseDatos extends compVentana
+public class GUITestBaseDatos extends CompVentana
 {
    /* Panel */
    private JPanel      pCentro;
@@ -46,7 +46,7 @@ public class GUITestBaseDatos extends compVentana
    {
       super("Conexión Database",true,320,120,800,400);
       /* Instanciando el componente */
-      compBaseDatos bd=new compBaseDatos("root","","prueba");
+      CompBaseDatos bd=new CompBaseDatos("root","","prueba");
       bd.run();
    }
    

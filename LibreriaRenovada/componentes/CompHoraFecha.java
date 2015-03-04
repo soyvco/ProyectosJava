@@ -3,7 +3,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class compHoraFecha
+public class CompHoraFecha
 {
    Date d =new Date();
    

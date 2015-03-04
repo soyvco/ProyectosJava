@@ -10,11 +10,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import net.miginfocom.swing.MigLayout;
-import componentes.compHoraFecha;
-import componentes.compVentana;
+import componentes.CompHoraFecha;
+import componentes.CompVentana;
 import javax.swing.JButton;
 
-public class GUIEvento extends compVentana implements KeyListener
+public class GUIEvento extends CompVentana implements KeyListener
 {
    private JTextArea   aMensajes;
    private JScrollPane spMensajes;
@@ -65,7 +65,7 @@ public class GUIEvento extends compVentana implements KeyListener
    {
       if(pE.getSource().equals(btnEnviar))
       {
-         compHoraFecha horaFecha=new compHoraFecha();
+         CompHoraFecha horaFecha=new CompHoraFecha();
          aMensajes.append("["+horaFecha.getHora()+"] >> "+txtMensaje.getText()+"\n");
          txtMensaje.setText("");
       }
@@ -90,7 +90,7 @@ public class GUIEvento extends compVentana implements KeyListener
    {
       if(pE.getKeyCode()==KeyEvent.VK_ENTER)
       {
-         compHoraFecha horaFecha=new compHoraFecha();
+         CompHoraFecha horaFecha=new CompHoraFecha();
          aMensajes.append("["+horaFecha.getHora()+"] >> "+txtMensaje.getText()+"\n");
          aMensajes.append(">> DE SEGURO NO TIENES CON QUIÉN HABLAR ¿CIERTO?\n");
          txtMensaje.setText("");

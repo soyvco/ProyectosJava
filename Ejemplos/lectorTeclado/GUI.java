@@ -9,9 +9,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import net.miginfocom.swing.MigLayout;
-import componentes.compVentana;
+import componentes.CompVentana;
 
-public class GUI extends compVentana implements KeyListener
+public class GUI extends CompVentana implements KeyListener
 {
    private JPanel    pCentro;
    private JTextArea aMensajes;

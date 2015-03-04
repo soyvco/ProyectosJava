@@ -7,10 +7,10 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
-public abstract class compVentana extends JFrame implements ActionListener
+public abstract class CompVentana extends JFrame implements ActionListener
 {
    
-   public compVentana(String pEncabezado,boolean pPrincipal,int pX,int pY,int pAncho,int pLargo)
+   public CompVentana(String pEncabezado,boolean pPrincipal,int pX,int pY,int pAncho,int pLargo)
    {
       this.setTitle(pEncabezado);
       this.setDefaultCloseOperation(pPrincipal?EXIT_ON_CLOSE: DISPOSE_ON_CLOSE);

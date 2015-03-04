@@ -12,7 +12,7 @@ import com.mysql.jdbc.Connection;
  * 
  * Autor: soyvco
  */
-public class compBaseDatos extends Thread
+public class CompBaseDatos extends Thread
 {
    // Variables necesarias para conectarse a cualqueier base de datos
    private String        usuario    ="";
@@ -25,7 +25,7 @@ public class compBaseDatos extends Thread
    /* Contructores */
    // Para base de datos local
    @SuppressWarnings("static-access")
-   public compBaseDatos(String pUsuario,String pContraseña,String pBaseDato)
+   public CompBaseDatos(String pUsuario,String pContraseña,String pBaseDato)
    {
       this.usuario=pUsuario;
       this.contraseña=pContraseña;
@@ -35,7 +35,7 @@ public class compBaseDatos extends Thread
    
    // Para base de datos remota
    @SuppressWarnings("static-access")
-   public compBaseDatos(String pUsuario,String pContraseña,String pBaseDato,String pUrl)
+   public CompBaseDatos(String pUsuario,String pContraseña,String pBaseDato,String pUrl)
    {
       this.usuario=pUsuario;
       this.contraseña=pContraseña;
