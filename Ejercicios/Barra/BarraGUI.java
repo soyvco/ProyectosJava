@@ -1,7 +1,9 @@
 package Barra;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 import javax.swing.BorderFactory;
+import javax.swing.JComponent;
 import javax.swing.JProgressBar;
 import javax.swing.border.Border;
 import componentes.CompVentana;
@@ -11,9 +13,11 @@ public class BarraGUI extends CompVentana
    private int          num;
    private JProgressBar progressBar;
    
+   @SuppressWarnings("null")
    BarraGUI()
    {
       super("Barra",true,450,200,400,150);
+      JComponent pContenido=null;
       pContenido.setBackground(Color.DARK_GRAY);
       pContenido.setForeground(Color.WHITE);
    }
@@ -33,7 +37,7 @@ public class BarraGUI extends CompVentana
          num+=95;
       }
    }
-   protected void crearContenido()
+   protected void crearContenido(Container pContenido)
    {
       progressBar=new JProgressBar(0,2000);
       progressBar.setBounds(40,40,320,40);
@@ -46,6 +50,10 @@ public class BarraGUI extends CompVentana
    
    
    public void actionPerformed(ActionEvent pE)
+   {
+   }
+
+   protected void crearContenido()
    {
    }
 }

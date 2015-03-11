@@ -3,6 +3,7 @@
 	<classpathentry kind="src" path=""/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="/home/vco/Documentos/lng/Java/jars/mysql-connector-java-5.1.30-bin.jar"/>
-	<classpathentry kind="lib" path="/home/vco/Documentos/lng/Java/jars/syntheticaBlackEye.jar"/>
+	<classpathentry kind="lib" path="/home/vco/Documentos/lng/Java/jars/itextpdf-5.5.3.jar"/>
+	<classpathentry kind="lib" path="/home/vco/Documentos/lng/Java/jars/synthetica.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>

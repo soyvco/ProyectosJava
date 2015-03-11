@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import componentes.CompBoton;
 import componentes.CompLabel;
-import componentes.CompTextfield;
+import componentes.CompTextField;
 import componentes.CompVentana;
 
 public class GUICliente extends CompVentana implements ActionListener
@@ -15,7 +15,7 @@ public class GUICliente extends CompVentana implements ActionListener
    private CompBoton     bCancelar;
    private JPanel        pCentro;
    private CompLabel     lblMembresia;
-   private CompTextfield txtNumTarjeta;
+   private CompTextField txtNumTarjeta;
    
    public GUICliente()
    {
@@ -29,9 +29,9 @@ public class GUICliente extends CompVentana implements ActionListener
       pCentro=new JPanel(null);
       pCentro.setBackground(new Color(255,204,153));
       getContentPane().add(BorderLayout.CENTER,pCentro);
-      /*Label y textfield*/
+      /* Label y textfield */
       lblMembresia=new CompLabel(pCentro,"Membresía",40,40,160,30);
-      txtNumTarjeta=new CompTextfield(pCentro,160,40,160,30);
+      txtNumTarjeta=new CompTextField(pCentro,160,40,160,30);
       /* Botones */
       bAceptar=new CompBoton(pCentro,"Registrar",this,40,120,120,40);
       bAceptar.setBackground(new Color(51,153,255));

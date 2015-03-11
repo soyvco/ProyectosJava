@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import componentes.CompBoton;
 import componentes.CompLabel;
-import componentes.CompTextfield;
+import componentes.CompTextField;
 import componentes.CompVentana;
 
 public class GUIEmpresa extends CompVentana implements ActionListener
@@ -18,10 +18,10 @@ public class GUIEmpresa extends CompVentana implements ActionListener
    private CompLabel     lblFolio;
    private CompLabel     lblKilosRopa;
    private CompLabel     lblFechaEntrega;
-   private CompTextfield txtConvenio;
-   private CompTextfield txtFolio;
-   private CompTextfield txtKilosRopa;
-   private CompTextfield txtFechaEntrega;
+   private CompTextField txtConvenio;
+   private CompTextField txtFolio;
+   private CompTextField txtKilosRopa;
+   private CompTextField txtFechaEntrega;
    private JPanel        pCentro;
    
    public GUIEmpresa()
@@ -42,10 +42,10 @@ public class GUIEmpresa extends CompVentana implements ActionListener
       lblKilosRopa=new CompLabel(pCentro,"Kilos de ropa:",40,185,200,40);
       lblFechaEntrega=new CompLabel(pCentro,"Fecha de entrega:",40,265,200,40);
       /* Textfields */
-      txtConvenio=new CompTextfield(pCentro,280,25,200,40);
-      txtFolio=new CompTextfield(pCentro,280,105,200,40);
-      txtKilosRopa=new CompTextfield(pCentro,280,185,200,40);
-      txtFechaEntrega=new CompTextfield(pCentro,280,265,200,40);
+      txtConvenio=new CompTextField(pCentro,280,25,200,40);
+      txtFolio=new CompTextField(pCentro,280,105,200,40);
+      txtKilosRopa=new CompTextField(pCentro,280,185,200,40);
+      txtFechaEntrega=new CompTextField(pCentro,280,265,200,40);
       /* Botones */
       bAceptar=new CompBoton(pCentro,"Aceptar",this,40,355,120,40);
       bAceptar.setBackground(new Color(51,153,255));

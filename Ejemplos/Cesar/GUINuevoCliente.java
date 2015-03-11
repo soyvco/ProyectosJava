@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import componentes.CompBoton;
 import componentes.CompLabel;
-import componentes.CompTextfield;
+import componentes.CompTextField;
 import componentes.CompVentana;
 
 public class GUINuevoCliente extends CompVentana implements ActionListener
@@ -17,9 +17,9 @@ public class GUINuevoCliente extends CompVentana implements ActionListener
    private CompLabel     lblMembresia;
    private CompLabel     lblNombre;
    private CompLabel     lblTelefono;
-   private CompTextfield txtMembresia;
-   private CompTextfield txtNombre;
-   private CompTextfield txtTelefono;
+   private CompTextField txtMembresia;
+   private CompTextField txtNombre;
+   private CompTextField txtTelefono;
    
    public GUINuevoCliente()
    {
@@ -38,9 +38,9 @@ public class GUINuevoCliente extends CompVentana implements ActionListener
       lblNombre=new CompLabel(pCentro,"Nombre:",40,100,160,40);
       lblTelefono=new CompLabel(pCentro,"Telefono:",40,160,160,40);
       /*Botones*/
-      txtMembresia=new CompTextfield(pCentro,160,40,160,40);
-      txtNombre=new CompTextfield(pCentro,160,100,160,40);
-      txtTelefono=new CompTextfield(pCentro,160,160,160,40);
+      txtMembresia=new CompTextField(pCentro,160,40,160,40);
+      txtNombre=new CompTextField(pCentro,160,100,160,40);
+      txtTelefono=new CompTextField(pCentro,160,160,160,40);
       /* Botones */
       bAceptar=new CompBoton(pCentro,"Registrar",this,40,240,120,40);
       bAceptar.setBackground(new Color(51,153,255));

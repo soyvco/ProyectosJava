@@ -1,10 +1,9 @@
 package componentes;
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import com.mysql.jdbc.Connection;
-
 /*
  * Componente que permite conectarse a una base de datos local o remota...
  * 
@@ -12,7 +11,7 @@ import com.mysql.jdbc.Connection;
  * 
  * Autor: soyvco
  */
-public class CompBaseDatos extends Thread
+public class CompBaseDatos
 {
    // Variables necesarias para conectarse a cualqueier base de datos
    private String        usuario    ="";
@@ -57,7 +56,7 @@ public class CompBaseDatos extends Thread
          {
             e.printStackTrace();
          }
-         conn=(Connection)DriverManager.getConnection(url,usuario,contraseña);
+         conn=DriverManager.getConnection(url,usuario,contraseña);
          System.out.println("Conexión satisfactoria con "+url);
       }
       catch(SQLException e)
