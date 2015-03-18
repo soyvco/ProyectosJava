@@ -1,6 +1,7 @@
 package BaseDatos;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
 import componentes.CompBaseDatos;
 
 public class PruebaBaseDatos
@@ -10,20 +11,17 @@ public class PruebaBaseDatos
       String matricula;
       String nomMaestro;
       String materia;
-      CompBaseDatos bd=new CompBaseDatos("root","","maestros");
+      CompBaseDatos bd=new CompBaseDatos("root","","RegistroITVH");
       ResultSet rs;
+      Vector<String> alumnos=new Vector<String>(1,1);
       bd.conectarBD();
-      rs=bd.getQuery("select * from maestro");
+      rs=bd.getQuery("select * from AltaAlumnos");
       try
       {
          while(rs.next())
          {
-            matricula=rs.getString("matricula");
-            nomMaestro=rs.getString("nomMaestro");
-            materia=rs.getString("materia");
-            System.out.print("Clave: "+matricula+" ");
-            System.out.print("Nombre maestro: "+nomMaestro+" ");
-            System.out.print("Materia: "+materia+" ");
+            alumnos.addElement(rs.getString("matricula"));
+            System.out.println(alumnos.size());
          }
       }
       catch(SQLException e)

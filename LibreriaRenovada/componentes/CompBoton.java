@@ -1,5 +1,6 @@
 package componentes;
 import java.awt.event.ActionListener;
+import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -19,6 +20,15 @@ public class CompBoton extends JButton
       this.setText(pEtiqueta);
       this.addActionListener(pAccion);
       this.setFocusable(false);
+   }
+   
+   public CompBoton(JPanel pPanel,String pUbicacion,String pEtiqueta,Icon pIcono,ActionListener pAccion)
+   {
+      pPanel.add(this,pUbicacion);
+      this.setText(pEtiqueta);
+      this.addActionListener(pAccion);
+      this.setFocusable(false);
+      this.setIcon(pIcono);
    }
    
    public CompBoton(JPanel pPanel,String pEtiqueta,ActionListener pAccion,int pX,int pY,int pAncho,int pLargo)

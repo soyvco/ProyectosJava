@@ -26,7 +26,7 @@ public class GUIPrincipal extends CompVentana
    
    public GUIPrincipal()
    {
-      super("Centro de altas y bajas ITVH",true,400,140,520,580);
+      super("Centro de altas y bajas ITVH",true,400,20,520,700);
       setIconImage(Toolkit.getDefaultToolkit().getImage(GUIPrincipal.class.getResource("/PNG/Users.png")));
       try
       {

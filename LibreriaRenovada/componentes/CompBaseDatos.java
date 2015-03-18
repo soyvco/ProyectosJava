@@ -4,6 +4,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 /*
  * Componente que permite conectarse a una base de datos local o remota...
  * 
@@ -29,7 +30,7 @@ public class CompBaseDatos
       this.usuario=pUsuario;
       this.contraseña=pContraseña;
       this.baseDato=pBaseDato;
-      this.url+=pBaseDato;
+      this.url="jdbc:mysql://localhost/"+pBaseDato;
    }
    
    // Para base de datos remota

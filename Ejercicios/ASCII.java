@@ -3,7 +3,7 @@ public class ASCII
 {
    public static void main(String[] args)
    {
-      char caracter='A';
+      char caracter='0';
       int valorChar=caracter;
       System.out.println(valorChar);
    }
