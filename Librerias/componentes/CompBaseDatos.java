@@ -13,10 +13,6 @@ public class CompBaseDatos
    static String         url      ="jdbc:mysql://localhost/"+baseDato;
    private Connection    conn     =null;
    
-   /*
-    *Este metodo conecta a su base de datos, sólo la tienen que mandar a llamar
-    *con.conexion(); Ejemplo... 
-    */
    public Connection conexion()
    {
       try
@@ -38,9 +34,10 @@ public class CompBaseDatos
       }
       return conn;
    }
+   
    /*
-    * Este metodo getQuery les permite traer los datos a su base de dato...
-    * Les dejare la clase "main" para que vean las pruebas que hice...
+    * Este metodo getQuery les permite traer los datos a su base de dato... Les
+    * dejare la clase "main" para que vean las pruebas que hice...
     */
    public ResultSet getQuery(String _query)
    {
@@ -57,8 +54,10 @@ public class CompBaseDatos
       }
       return rs;
    }
+   
    /*
-    * Este metodo es para ingresar datos a la BD, ya sean nuevos, o modificaciones...
+    * Este metodo es para ingresar datos a la BD, ya sean nuevos, o
+    * modificaciones...
     */
    public void setQuery(String _query)
    {

@@ -47,7 +47,7 @@ public class GUITestBaseDatos extends CompVentana
       super("Conexión Database",true,320,120,800,400);
       /* Instanciando el componente */
       CompBaseDatos bd=new CompBaseDatos("root","","prueba");
-      bd.run();
+      bd.conectarBD();
    }
    
    protected void crearContenido()

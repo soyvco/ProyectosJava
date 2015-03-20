@@ -40,7 +40,7 @@ public class CompBaseDatos
       this.usuario=pUsuario;
       this.contraseña=pContraseña;
       this.baseDato=pBaseDato;
-      this.url=pUrl+pBaseDato;
+      this.url="jdbc:mysql://"+pUrl+pBaseDato;
    }
    
    /* Métodos */
@@ -97,10 +97,5 @@ public class CompBaseDatos
       {
          e.printStackTrace();
       }
-   }
-   
-   public void run()
-   {
-      this.conectarBD();
    }
 }

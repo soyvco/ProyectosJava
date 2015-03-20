@@ -1,27 +1,32 @@
 package BaseDatos;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Vector;
 import componentes.CompBaseDatos;
 
 public class PruebaBaseDatos
 {
    public static void main(String[] args)
    {
-      String matricula;
-      String nomMaestro;
-      String materia;
-      CompBaseDatos bd=new CompBaseDatos("root","","RegistroITVH");
+      /*Creamos una instancia de la clase componente: usuario, contraseña y nombre de la base de datos*/
+      CompBaseDatos bd=new CompBaseDatos("root","","prueba");
+      /*Creamoos un variable de tipo resulset que nos devolverá los valores de las consultas*/
       ResultSet rs;
-      Vector<String> alumnos=new Vector<String>(1,1);
+      /*Conectamos la base de datos*/
       bd.conectarBD();
-      rs=bd.getQuery("select * from AltaAlumnos");
+      /*Creamos una tabla en la BD*/
+      bd.setQuery("create table tablaPrueba(matricula varchar(8) not null, nombre varchar(20) not null, primary key(matricula))");
+      /*Agregamos valores a la tabla*/
+      bd.setQuery("insert into tablaPrueba(matricula,nombre) values('13301056','Victor')");
+      bd.setQuery("insert into tablaPrueba(matricula,nombre) values('13301057','Joksan')");
+      /*Hacemos una consulta*/
+      rs=bd.getQuery("select * from tablaPrueba");
       try
       {
+         System.out.println("Matricula\tNombre\n");
          while(rs.next())
          {
-            alumnos.addElement(rs.getString("matricula"));
-            System.out.println(alumnos.size());
+            /*Mostramos los valores de la consulta*/
+            System.out.println(rs.getString("matricula")+"\t"+rs.getString("nombre"));
          }
       }
       catch(SQLException e)
