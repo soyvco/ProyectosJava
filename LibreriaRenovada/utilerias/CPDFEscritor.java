@@ -75,18 +75,12 @@ public class CPDFEscritor
          JOptionPane.showMessageDialog(null,"Error al añadir parrafo");
       }
    }
-   /*public void añadir(String parrafo)
-   {
-      try
-      {
-         document.add(new Paragraph(parrafo));
-      }
-      catch(DocumentException e)
-      {
-         JOptionPane.showMessageDialog(null,"Error al añadir parrafo");
-      }
-   }*/
    
+   /*
+    * public void añadir(String parrafo) { try { document.add(new
+    * Paragraph(parrafo)); } catch(DocumentException e) {
+    * JOptionPane.showMessageDialog(null,"Error al añadir parrafo"); } }
+    */
    public void añadirImagen(String Imagen,int ancho,int largo) throws MalformedURLException,IOException
    {
       try
@@ -123,5 +117,4 @@ public class CPDFEscritor
          e.printStackTrace();
       }
    }
-
 }

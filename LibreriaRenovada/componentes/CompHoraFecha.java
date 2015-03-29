@@ -7,7 +7,6 @@ public class CompHoraFecha
 {
    Date d =new Date();
    
-   
    public String getHora()
    {
       // Caso 1: obtener la hora y salida por pantalla con formato:
@@ -21,6 +20,7 @@ public class CompHoraFecha
       DateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
       return dateFormat.format(d);
    }
+   
    public String getFechaHora()
    {
       // Caso 3: obtenerhora y fecha y salida por pantalla con formato:
