@@ -3,78 +3,42 @@ import javax.swing.JLabel;
 
 public class CompCronometro extends Thread
 {
-   Integer    minutos   =0;
-   Integer    segundos  =0;
-   Integer    milesimas =0;
-   String     min       ="";
-   String     seg       ="";
-   String     mil       ="";
+   Integer    minutos  =0;
+   Integer    segundos =0;
+   String     min      ="";
+   String     seg      ="";
    JLabel     label;
-   boolean    Activo;
-   static int flag      =0;
+   String     limite   ="";
+   boolean    Activo   =true;
+   static int flag     =0;
+   
+   public CompCronometro(JLabel pLabel,String pLimite)
+   {
+      label=pLabel;
+      limite=pLimite;
+   }
    
    public void setLabel(JLabel pLabel)
    {
       this.label=pLabel;
    }
-   
-   @SuppressWarnings("deprecation")
-   public void activarCronometro()
+   public String getTiempo()
    {
-      if(flag==0)
-      {
-         flag=1;
-         this.Activo=true;
-         this.start();
-      }
-      else if(flag==2)
-      {
-         flag=1;
-         this.Activo=true;
-         this.resume();
-      }
+      String tiempo=label.getText();
+      return tiempo;
    }
-   
-   @SuppressWarnings("deprecation")
-   public void pararCronometro()
-   {
-      if(flag==1)
-      {
-         flag=2;
-         this.Activo=false;
-         this.suspend();
-      }
-   }
-   
-   @SuppressWarnings("deprecation")
-   public void reiniciarCronometro()
-   {
-      if(flag==1||flag==2)
-      {
-         flag=0;
-         this.Activo=false;
-         this.stop();
-         label.setText("00:00:000");
-      }
-   }
-   
    public void run()
    {
       try
       {
-         while(Activo==true)
+         while(Activo)
          {
-            Thread.sleep(4);
-            milesimas+=4;
-            if(milesimas==1000)
+            sleep(1000);
+            segundos++;
+            if(segundos==60)
             {
-               milesimas=0;
-               segundos++;
-               if(segundos==60)
-               {
-                  segundos=0;
-                  minutos++;
-               }
+               segundos=0;
+               minutos++;
             }
             if(minutos<10)
             {
@@ -92,24 +56,16 @@ public class CompCronometro extends Thread
             {
                seg=segundos.toString();
             }
-            if(milesimas<10)
+            label.setText(min+":"+seg);
+            if(limite.equals(min+":"+seg))
             {
-               mil="00"+milesimas;
+               Activo=false;
             }
-            else if(milesimas<100)
-            {
-               mil="0"+milesimas;
-            }
-            else
-            {
-               mil=milesimas.toString();
-            }
-            label.setText(min+":"+seg+":"+mil);
          }
       }
       catch(InterruptedException e)
       {
-         label.setText("00:00:000");
+         label.setText("00:00");
       }
    }
 }

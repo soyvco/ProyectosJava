@@ -2,10 +2,11 @@ package MarcadorTKD;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.font.NumericShaper;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
@@ -13,35 +14,38 @@ import componentes.CompBoton;
 import componentes.CompCronometro;
 import componentes.CompLabel;
 import componentes.CompVentana2;
-import javax.swing.ImageIcon;
 
 public class GUIMarcadorTKD extends CompVentana2 implements KeyListener
 {
-   private JPanel    pContenido;
-   private JPanel    pArriba;
-   private JPanel    pAbajo;
-   private JPanel    pCentro;
-   private JPanel    pIzquierda;
-   private JPanel    pDerecha;
-   private CompLabel lblCronometro;
-   private CompLabel lblPuntoRojo;
-   private CompLabel lblPuntoAzul;
-   private CompLabel lblRound;
-   private CompBoton bIniciar;
-   private CompBoton bPausar;
-   private CompBoton bReiniciar;
-   private CompBoton bConfigurar;
-   private String    limiteRound   ="00:00:000";
-   private Integer   numRound      =0;
-   private Integer   contadorRound =0;
-   private Integer   puntaje       =0;
-   private Integer   amonestacion  =0;
-   CompCronometro    cronometro    =new CompCronometro();
-   public static int on_off        =0;
+   private JPanel         pContenido;
+   private JPanel         pArriba;
+   private JPanel         pAbajo;
+   private JPanel         pCentro;
+   private JPanel         pIzquierda;
+   private JPanel         pDerecha;
+   private CompLabel      lblCronometro;
+   private CompLabel      lblPuntoRojo;
+   private CompLabel      lblPuntoAzul;
+   private CompLabel      lblRound;
+   private CompBoton      bIniciar;
+   private CompBoton      bPausar;
+   private CompBoton      bReiniciar;
+   private CompBoton      bConfigurar;
+   private static String  tiempoRound      ="00:00:000";
+   private static Integer numeroRounds     =0;
+   private static Integer contadorRounds   =1;
+   private Integer        puntaje          =0;
+   private Integer        amonestacionRojo =0;
+   private Integer        amonestacionAzul =0;
+   static boolean         activarPuntos    =false;
+   static boolean         finalCombate     =false;
+   static int             flag             =0;
+   private CompCronometro cronometro;
    
    public GUIMarcadorTKD()
    {
       super("Marcador",true,800,500);
+      setIconImage(Toolkit.getDefaultToolkit().getImage(GUIMarcadorTKD.class.getResource("/PNG/Universal Binary.png")));
       this.addKeyListener(this);
    }
    
@@ -66,8 +70,8 @@ public class GUIMarcadorTKD extends CompVentana2 implements KeyListener
       pAbajo.setBackground(Color.WHITE);
       pContenido.add(pAbajo,BorderLayout.SOUTH);
       /* Labels */
-      lblCronometro=new CompLabel(pArriba,"cell 1 0","00:00:000");
-      lblCronometro.setIcon(new ImageIcon(GUIMarcadorTKD.class.getResource("/PNG/Backup Green Button.png")));
+      lblCronometro=new CompLabel(pArriba,"cell 1 0","00:00");
+      lblCronometro.setIcon(new ImageIcon(GUIMarcadorTKD.class.getResource("/PNG/History.png")));
       lblCronometro.setFont(new Font("Dialog",Font.BOLD,50));
       lblRound=new CompLabel(pCentro,"cell 6 0","ROUND: 0");
       lblRound.setIcon(new ImageIcon(GUIMarcadorTKD.class.getResource("/PNG/Get Info Purple Button.png")));
@@ -79,7 +83,7 @@ public class GUIMarcadorTKD extends CompVentana2 implements KeyListener
       /* Botones */
       bIniciar=new CompBoton(pAbajo,"cell 1 1, grow","Iniciar",this);
       bIniciar.setIcon(new ImageIcon(GUIMarcadorTKD.class.getResource("/PNG/Play All.png")));
-      // bIniciar.setEnabled(false);
+      bIniciar.setEnabled(false);
       bPausar=new CompBoton(pAbajo,"cell 3 1, grow","Pausar",this);
       bPausar.setIcon(new ImageIcon(GUIMarcadorTKD.class.getResource("/PNG/Pause All.png")));
       bPausar.setEnabled(false);
@@ -92,45 +96,62 @@ public class GUIMarcadorTKD extends CompVentana2 implements KeyListener
       doLayout();
    }
    
+   @SuppressWarnings("deprecation")
    public void actionPerformed(ActionEvent pE)
    {
-      cronometro.setLabel(lblCronometro);
       if(pE.getSource().equals(bIniciar))
       {
-         /*
-          * 0 - apagado 1 - encendido 2 - pausado
-          */
-         cronometro.activarCronometro();
+         if(flag==0)
+         {
+            flag=1;
+            cronometro=new CompCronometro(lblCronometro,tiempoRound);
+            cronometro.start();
+            lblRound.setText("ROUND: "+contadorRounds.toString());
+         }
+         else if(flag==2)
+         {
+            flag=1;
+            cronometro.resume();
+         }
          bIniciar.setEnabled(false);
          bPausar.setEnabled(true);
          bReiniciar.setEnabled(true);
-         bConfigurar.setEnabled(false);
+         activarPuntos=true;
       }
       else if(pE.getSource().equals(bPausar))
       {
-         cronometro.pararCronometro();
+         if(flag==1)
+         {
+            flag=2;
+            cronometro.suspend();
+         }
          bIniciar.setText("Reanudar");
          bIniciar.setEnabled(true);
          bPausar.setEnabled(false);
          bReiniciar.setEnabled(true);
-         bConfigurar.setEnabled(false);
+         activarPuntos=true;
       }
       else if(pE.getSource().equals(bReiniciar))
       {
-         cronometro.reiniciarCronometro();
+         if(flag==1||flag==2)
+         {
+            flag=0;
+            cronometro.stop();
+            lblCronometro.setText("00:00");
+         }
          bIniciar.setEnabled(true);
          bPausar.setEnabled(false);
          bReiniciar.setEnabled(false);
          bConfigurar.setEnabled(true);
+         activarPuntos=false;
       }
       else if(pE.getSource().equals(bConfigurar))
       {
-         numRound=Integer.parseInt(JOptionPane.showInputDialog("Indique el número de rounds"));
-         limiteRound=JOptionPane.showInputDialog("Indique la duración por round:")+":000";
+         numeroRounds=Integer.parseInt(JOptionPane.showInputDialog("Indique el número de rounds"));
+         tiempoRound=JOptionPane.showInputDialog("Indique la duración por round:");
          bIniciar.setEnabled(true);
-         bPausar.setEnabled(false);
-         bReiniciar.setEnabled(false);
          bConfigurar.setEnabled(false);
+         activarPuntos=false;
       }
    }
    
@@ -157,116 +178,119 @@ public class GUIMarcadorTKD extends CompVentana2 implements KeyListener
       {
          bConfigurar.doClick();
       }
-      /* Marcación de puntos */
-      else if(pE.getKeyCode()==KeyEvent.VK_Q)
+      /* Marcación de puntos y amonestacione */
+      else if(activarPuntos==true)
       {
-         puntaje=1+Integer.parseInt(lblPuntoRojo.getText());
-         lblPuntoRojo.setText(puntaje.toString());
-      }
-      else if(pE.getKeyCode()==KeyEvent.VK_W)
-      {
-         puntaje=2+Integer.parseInt(lblPuntoRojo.getText());
-         lblPuntoRojo.setText(puntaje.toString());
-      }
-      else if(pE.getKeyCode()==KeyEvent.VK_E)
-      {
-         puntaje=3+Integer.parseInt(lblPuntoRojo.getText());
-         lblPuntoRojo.setText(puntaje.toString());
-      }
-      else if(pE.getKeyCode()==KeyEvent.VK_R)
-      {
-         puntaje=4+Integer.parseInt(lblPuntoRojo.getText());
-         lblPuntoRojo.setText(puntaje.toString());
-      }
-      else if(pE.getKeyCode()==KeyEvent.VK_A)
-      {
-         puntaje=1+Integer.parseInt(lblPuntoAzul.getText());
-         lblPuntoAzul.setText(puntaje.toString());
-      }
-      else if(pE.getKeyCode()==KeyEvent.VK_S)
-      {
-         puntaje=2+Integer.parseInt(lblPuntoAzul.getText());
-         lblPuntoAzul.setText(puntaje.toString());
-      }
-      else if(pE.getKeyCode()==KeyEvent.VK_D)
-      {
-         puntaje=3+Integer.parseInt(lblPuntoAzul.getText());
-         lblPuntoAzul.setText(puntaje.toString());
-      }
-      else if(pE.getKeyCode()==KeyEvent.VK_F)
-      {
-         puntaje=4+Integer.parseInt(lblPuntoAzul.getText());
-         lblPuntoAzul.setText(puntaje.toString());
-      }
-      /* Amonestaciones */
-      else if(pE.getKeyCode()==KeyEvent.VK_Z)
-      {
-         if(amonestacion!=2)
+         if(pE.getKeyCode()==KeyEvent.VK_Q)
          {
-            amonestacion++;
+            puntaje=1+Integer.parseInt(lblPuntoRojo.getText());
+            lblPuntoRojo.setText(puntaje.toString());
          }
-         else
+         else if(pE.getKeyCode()==KeyEvent.VK_W)
          {
-            if(puntaje!=-1)
+            puntaje=2+Integer.parseInt(lblPuntoRojo.getText());
+            lblPuntoRojo.setText(puntaje.toString());
+         }
+         else if(pE.getKeyCode()==KeyEvent.VK_E)
+         {
+            puntaje=3+Integer.parseInt(lblPuntoRojo.getText());
+            lblPuntoRojo.setText(puntaje.toString());
+         }
+         else if(pE.getKeyCode()==KeyEvent.VK_R)
+         {
+            puntaje=4+Integer.parseInt(lblPuntoRojo.getText());
+            lblPuntoRojo.setText(puntaje.toString());
+         }
+         else if(pE.getKeyCode()==KeyEvent.VK_A)
+         {
+            puntaje=1+Integer.parseInt(lblPuntoAzul.getText());
+            lblPuntoAzul.setText(puntaje.toString());
+         }
+         else if(pE.getKeyCode()==KeyEvent.VK_S)
+         {
+            puntaje=2+Integer.parseInt(lblPuntoAzul.getText());
+            lblPuntoAzul.setText(puntaje.toString());
+         }
+         else if(pE.getKeyCode()==KeyEvent.VK_D)
+         {
+            puntaje=3+Integer.parseInt(lblPuntoAzul.getText());
+            lblPuntoAzul.setText(puntaje.toString());
+         }
+         else if(pE.getKeyCode()==KeyEvent.VK_F)
+         {
+            puntaje=4+Integer.parseInt(lblPuntoAzul.getText());
+            lblPuntoAzul.setText(puntaje.toString());
+         }
+         /* Amonestaciones */
+         else if(pE.getKeyCode()==KeyEvent.VK_Z)
+         {
+            if(amonestacionRojo!=1)
+            {
+               amonestacionRojo++;
+            }
+            else
+            {
+               if(puntaje!=0)
+               {
+                  puntaje=Integer.parseInt(lblPuntoRojo.getText())-1;
+                  lblPuntoRojo.setText(puntaje.toString());
+                  amonestacionRojo=0;
+               }
+               else
+               {
+                  lblPuntoRojo.setText("0");
+                  amonestacionRojo=0;
+               }
+            }
+         }
+         else if(pE.getKeyCode()==KeyEvent.VK_X)
+         {
+            if(puntaje!=0)
             {
                puntaje=Integer.parseInt(lblPuntoRojo.getText())-1;
                lblPuntoRojo.setText(puntaje.toString());
-               amonestacion=0;
+               amonestacionRojo=0;
             }
             else
             {
                lblPuntoRojo.setText("0");
-               amonestacion=0;
+               amonestacionRojo=0;
             }
          }
-      }
-      else if(pE.getKeyCode()==KeyEvent.VK_X)
-      {
-         if(puntaje!=-1)
+         else if(pE.getKeyCode()==KeyEvent.VK_C)
          {
-            puntaje=Integer.parseInt(lblPuntoRojo.getText())-1;
-            lblPuntoRojo.setText(puntaje.toString());
-            amonestacion=0;
+            if(amonestacionAzul!=1)
+            {
+               amonestacionAzul++;
+            }
+            else
+            {
+               if(puntaje!=0)
+               {
+                  puntaje=Integer.parseInt(lblPuntoAzul.getText())-1;
+                  lblPuntoAzul.setText(puntaje.toString());
+                  amonestacionAzul=0;
+               }
+               else
+               {
+                  lblPuntoAzul.setText("0");
+                  amonestacionAzul=0;
+               }
+            }
          }
-         else
+         else if(pE.getKeyCode()==KeyEvent.VK_V)
          {
-            lblPuntoRojo.setText("0");
-            amonestacion=0;
-         }
-      }
-      else if(pE.getKeyCode()==KeyEvent.VK_C)
-      {
-         if(amonestacion!=2)
-         {
-            amonestacion++;
-         }
-         else
-         {
-            if(puntaje!=-1)
+            if(puntaje!=0)
             {
                puntaje=Integer.parseInt(lblPuntoAzul.getText())-1;
                lblPuntoAzul.setText(puntaje.toString());
-               amonestacion=0;
+               amonestacionRojo=0;
             }
             else
             {
                lblPuntoAzul.setText("0");
-               amonestacion=0;
+               amonestacionRojo=0;
             }
-         }
-      }
-      else if(pE.getKeyCode()==KeyEvent.VK_V)
-      {
-         if(puntaje!=-1)
-         {
-            puntaje=Integer.parseInt(lblPuntoAzul.getText())-1;
-            lblPuntoAzul.setText(puntaje.toString());
-            amonestacion=0;
-         }
-         else
-         {
-            lblPuntoAzul.setText("0");
-            amonestacion=0;
          }
       }
    }
