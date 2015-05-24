@@ -1,10 +1,12 @@
-package componentes;
+package cronometro;
 import javax.swing.JLabel;
 
-public class CompCronometro extends Thread
+public class TCronometro extends Thread
 {
+   Integer    horas    =0;
    Integer    minutos  =0;
    Integer    segundos =0;
+   String     hr       ="";
    String     min      ="";
    String     seg      ="";
    JLabel     label;
@@ -12,26 +14,9 @@ public class CompCronometro extends Thread
    boolean    Activo   =true;
    static int flag     =0;
    
-   public CompCronometro(JLabel pLabel,String pLimite)
+   public TCronometro(JLabel pLabel)
    {
       label=pLabel;
-      limite=pLimite;
-   }
-   
-   public CompCronometro(JLabel pLabel)
-   {
-      label=pLabel;
-   }
-   
-   public void setLabel(JLabel pLabel)
-   {
-      this.label=pLabel;
-   }
-   
-   public String getTiempo()
-   {
-      String tiempo=label.getText();
-      return tiempo;
    }
    
    public void run()
@@ -46,6 +31,19 @@ public class CompCronometro extends Thread
             {
                segundos=0;
                minutos++;
+            }
+            if(minutos==60)
+            {
+               minutos=0;
+               horas++;
+            }
+            if(horas<10)
+            {
+               hr="0"+horas;
+            }
+            else
+            {
+               hr=hr.toString();
             }
             if(minutos<10)
             {
@@ -63,16 +61,12 @@ public class CompCronometro extends Thread
             {
                seg=segundos.toString();
             }
-            label.setText(min+":"+seg);
-            if(limite.equals(min+":"+seg))
-            {
-               Activo=false;
-            }
+            label.setText(hr+":"+min+":"+seg);
          }
       }
       catch(InterruptedException e)
       {
-         label.setText("00:00");
+         label.setText("00:00:00");
       }
    }
 }
