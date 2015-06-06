@@ -11,6 +11,8 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import net.miginfocom.swing.MigLayout;
+import com.jgoodies.forms.factories.DefaultComponentFactory;
+import java.awt.Color;
 
 public class GUICronometro extends JFrame implements ActionListener
 {
