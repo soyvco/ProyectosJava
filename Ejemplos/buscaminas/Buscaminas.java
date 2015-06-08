@@ -154,7 +154,7 @@ public class Buscaminas extends JFrame implements ActionListener
    
    /**
     * @param x : Coordenada filas y Coordenada columnas numeroMinas:<br>
-    * devuelve el número de minas de la posición
+    * devuelve el nï¿½mero de minas de la posiciï¿½n
     */
    private int minasCerca(int x,int y)
    {
@@ -174,7 +174,7 @@ public class Buscaminas extends JFrame implements ActionListener
                numeroMinas++;
       }
       // En diagonal
-      // Posición de la esquina superior izquierda
+      // Posiciï¿½n de la esquina superior izquierda
       int x1 = x;
       int y1 = y;
       x1--;
@@ -186,7 +186,7 @@ public class Buscaminas extends JFrame implements ActionListener
                numeroMinas++;
          y1++;
       }
-      // Posición de la esquina superior derecha
+      // Posiciï¿½n de la esquina superior derecha
       x1 = x;
       y1 = y;
       x1--;
